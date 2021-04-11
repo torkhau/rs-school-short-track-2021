@@ -21,8 +21,22 @@
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new Error('Not implemented');
+const parseElem = (matrix, i) => {
+  if (matrix) {
+    return Number(matrix[i]) ? Number(matrix[i]) : 0;
+  }
+  return 0;
+};
+
+function minesweeper(matrix) {
+  return matrix.map((el, i) => (el.map((_, elI) => (parseElem(matrix[i - 1], elI - 1)
+  + parseElem(matrix[i - 1], elI)
+  + parseElem(matrix[i - 1], elI + 1)
+  + parseElem(matrix[i], elI - 1)
+  + parseElem(matrix[i], elI + 1)
+  + parseElem(matrix[i + 1], elI - 1)
+  + parseElem(matrix[i + 1], elI)
+  + parseElem(matrix[i + 1], elI + 1)))));
 }
 
 module.exports = minesweeper;
